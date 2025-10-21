@@ -1,59 +1,49 @@
 #include <Arduino.h>
-
-//definición de pines
-const int PinENA = 8;
-const int PinIN1 = 7;
-const int PinIN2 = 6;
+//MOTOR SHIELD L298N
+int IN1 = 4; //d2
+int IN2 = 13; //d3
+int PWM1 = 5; //d1
 
 void setup() {
   // inicializar la comunicación serial a 9600 bits por segundo:
   Serial.begin(9600);
   // configuramos los pines como salida
-  pinMode(PinENA, OUTPUT);
-  pinMode(PinIN1, OUTPUT);
-  pinMode(PinIN2, OUTPUT);
-  //Inicializamos los pines
-  analogWrite(PinENA,0);
-  digitalWrite (PinIN1, LOW);
-  digitalWrite (PinIN2, LOW);
-  
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
 }
 
 void loop() {
   
-  MotorHorario(200); //Motor horario con velocidad de 200(PWM 0-250)
+  MotorHorario();
   Serial.println("Giro del Motor en sentido horario");
   delay(5000);
   
-  MotorAntihorario(200);  //Motor horario con velocidad de 200(PWM 0-250)
+  MotorAntihorario();
   Serial.println("Giro del Motor en sentido antihorario");
   delay(5000);
   
-  MotorStop(); //Motor Apagado
+  MotorStop();
   Serial.println("Motor Detenido");
   delay(3000);
   
 }
 
 //función para girar el motor en sentido horario
-void MotorHorario(int velocidad) //velocidad 0-250
+void MotorHorario()
 {
-  digitalWrite (PinIN1, HIGH);
-  digitalWrite (PinIN2, LOW);
-  analogWrite(PinENA,velocidad);
+  digitalWrite (IN1, HIGH);
+  digitalWrite (IN2, LOW);
 }
 //función para girar el motor en sentido antihorario
-void MotorAntihorario(int velocidad) //velocidad 0-250
+void MotorAntihorario()
 {
-  digitalWrite (PinIN1, LOW);
-  digitalWrite (PinIN2, HIGH);
-  analogWrite(PinENA,velocidad);
+  digitalWrite (IN1, LOW);
+  digitalWrite (IN2, HIGH);
 }
 
 //función para apagar el motor
 void MotorStop()
 {
-  digitalWrite (PinIN1, LOW);
-  digitalWrite (PinIN2, LOW);
-  analogWrite(PinENA,0);
+  digitalWrite (IN1, LOW);
+  digitalWrite (IN2, LOW);
 }

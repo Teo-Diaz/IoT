@@ -1,0 +1,143 @@
+body {
+  margin: 0;
+  background: radial-gradient(circle at center, #0a0f1f 0%, #000 100%);
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.control-container {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  gap: 10rem;
+}
+
+.title {
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff;
+  margin-bottom: 2rem;
+}
+
+/* ===== JOYSTICK ===== */
+.joystick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.middle-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #00ffff;
+  background: rgba(0, 255, 255, 0.1);
+  color: #00ffff;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background: rgba(0, 255, 255, 0.3);
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #00ffff;
+}
+
+.btn.stop {
+  background: rgba(255, 0, 0, 0.2);
+  border-color: #ff3b3b;
+  color: #ff3b3b;
+}
+
+.btn.stop:hover {
+  background: rgba(255, 0, 0, 0.4);
+  box-shadow: 0 0 25px #ff3b3b;
+}
+
+/* ===== SPEED CONTROL ===== */
+.speed-control {
+  margin-top: 3rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.speed-ring {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #00ffff calc(var(--speed) * 1%),
+    #222 calc(var(--speed) * 1%)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+  transition: background 0.2s ease;
+}
+
+.speed-slider {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  opacity: 0;
+  cursor: pointer;
+  transform: rotate(-90deg);
+}
+
+.speed-value {
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .control-container {
+    flex-direction: column;
+    gap: 4rem;
+  }
+  .btn {
+    width: 65px;
+    height: 65px;
+    font-size: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .middle-row {
+    gap: 0.7rem;
+  }
+
+  .speed-ring {
+    width: 140px;
+    height: 140px;
+  }
+
+  .speed-value {
+    font-size: 1.5rem;
+  }
+}
